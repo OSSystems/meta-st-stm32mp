@@ -86,7 +86,7 @@ LD[unexport] = "1"
 
 # python3-cryptography needs the legacy provider, so set OPENSSL_MODULES to the
 # right path until this is relocated automatically.
-export OPENSSL_MODULES="${STAGING_LIBDIR_NATIVE}/ossl-modules"
+export OPENSSL_MODULES = "${STAGING_LIBDIR_NATIVE}/ossl-modules"
 
 # TF-M ships patches that it needs applied to mbedcrypto, so apply them
 # as part of do_patch.
@@ -108,7 +108,7 @@ do_configure() {
 # first thing the build does is 'install' inside the build tree thus causing a
 # rebuild. It also overrides the install prefix to be in the build tree, so you
 # can't use the usual install prefix variables.
-TF_M_DTS_SUB_PATH="platform/ext/target/stm/common/devicetree/dts/arm/stm"
+TF_M_DTS_SUB_PATH = "platform/ext/target/stm/common/devicetree/dts/arm/stm"
 
 EXTRA_OECMAKE_NS ?= "${@bb.utils.contains('MACHINE_FEATURES','m33td','-DNS=ON','-DNS=OFF',d)} "
 
