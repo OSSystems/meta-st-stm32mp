@@ -8,8 +8,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 SRC_URI = "file://boot.scr.cmd"
 
-S = "${WORKDIR}/sources"
-UNPACKDIR = "${S}"
+S = "${UNPACKDIR}/sources"
 B = "${WORKDIR}/build"
 
 PV = "3.1.1"
