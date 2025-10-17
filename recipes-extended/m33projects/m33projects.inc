@@ -45,9 +45,9 @@ M33_FOLDER ?= "Cube-M33-examples"
 M33_INSTALLDIR ?= "${prefix}local"
 M33_OUTPUT_4USERFS = "${M33_INSTALLDIR}/${M33_FOLDER}"
 
-export TA_DEV_KIT_DIR="${STAGING_INCDIR}/optee/export-user_ta_arm64"
-export SBOOTADDR="0x80000000"
-export NSBOOTADDR="0x80100000"
+export TA_DEV_KIT_DIR = "${STAGING_INCDIR}/optee/export-user_ta_arm64"
+export SBOOTADDR = "0x80000000"
+export NSBOOTADDR = "0x80100000"
 
 # M33 key settings
 M33_OPTEE_KEYNAME ?= "default.pem"
