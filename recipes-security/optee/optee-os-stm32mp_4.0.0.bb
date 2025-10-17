@@ -6,7 +6,7 @@ SRC_URI = "git://github.com/OP-TEE/optee_os.git;protocol=https;branch=master"
 SRCREV = "2a5b1d1232f582056184367fb58a425ac7478ec6"
 
 SRC_URI += " \
-    file://fonts.tar.gz;subdir=git;name=fonts \
+    file://fonts.tar.gz;subdir=${S};name=fonts \
     file://0001-4.0.0-stm32mp-r1.2.patch \
     "
 
