@@ -20,8 +20,6 @@ SRCREV_FORMAT = "murata"
 
 PV = "6.0"
 
-S = "${WORKDIR}/git"
-
 do_install() {
    install -d ${D}${nonarch_base_libdir}/firmware/brcm/
    # ---- 43430-----
