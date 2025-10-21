@@ -1,0 +1,106 @@
+From f197ee4722275dae57174e1aac5a451450f7d7e1 Mon Sep 17 00:00:00 2001
+From: Chancel Liu <chancel.liu@nxp.com>
+Date: Fri, 29 Jul 2022 16:12:37 +0800
+Subject: [PATCH] add conf for imx-cs42448 sound card
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Upstream-Status: Inappropriate [i.MX specific]
+
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ src/conf/cards/CS42448.conf | 58 +++++++++++++++++++++++++++++++++++++
+ src/conf/cards/Makefile.am  |  1 +
+ src/conf/cards/aliases.conf |  1 +
+ 3 files changed, 60 insertions(+)
+ create mode 100644 src/conf/cards/CS42448.conf
+
+diff --git a/src/conf/cards/CS42448.conf b/src/conf/cards/CS42448.conf
+new file mode 100644
+index 0000000..28ba5c4
+--- /dev/null
++++ b/src/conf/cards/CS42448.conf
+@@ -0,0 +1,58 @@
++#
++# Configuration for the CS42448 chip
++#
++
++# default with dmix & dsnoop
++CS42448.pcm.default {
++	@args [ CARD ]
++	@args.CARD {
++		type string
++	}
++	type asym
++	playback.pcm {
++		type plug
++		slave.pcm {
++			@func concat
++			strings [ "dmix:" $CARD ",FORMAT=S32_LE" ]
++		}
++	}
++	capture.pcm {
++		type plug
++		slave.pcm {
++			@func concat
++			strings [ "dsnoop:" $CARD ",FORMAT=S32_LE" ]
++		}
++	}
++}
++
++<confdir:pcm/surround51.conf>
++
++CS42448.pcm.surround51.0 {
++	@args [ CARD ]
++	@args.CARD {
++		type string
++	}
++	type plug
++	slave.pcm {
++		type hw
++		card $CARD
++	}
++	slave.channels 6
++}
++
++<confdir:pcm/surround71.conf>
++
++CS42448.pcm.surround71.0 {
++	@args [ CARD ]
++	@args.CARD {
++		type string
++	}
++	type plug
++	slave.pcm {
++		type hw
++		card $CARD
++	}
++	slave.channels 8
++}
++
++# vim: ft=alsaconf
+diff --git a/src/conf/cards/Makefile.am b/src/conf/cards/Makefile.am
+index 4502919..da2def3 100644
+--- a/src/conf/cards/Makefile.am
++++ b/src/conf/cards/Makefile.am
+@@ -5,6 +5,7 @@ cfg_files = aliases.conf \
+ 	IMX-HDMI.conf \
+ 	AK4458.conf \
+ 	IMX-XCVR.conf \
++	CS42448.conf \
+ 	AACI.conf \
+ 	ATIIXP.conf \
+ 	ATIIXP-SPDMA.conf \
+diff --git a/src/conf/cards/aliases.conf b/src/conf/cards/aliases.conf
+index 6dab148..554db84 100644
+--- a/src/conf/cards/aliases.conf
++++ b/src/conf/cards/aliases.conf
+@@ -61,6 +61,7 @@ imx-cs42888 cards.CS42888
+ imx-hdmi-soc cards.IMX-HDMI
+ ak4458-audio cards.AK4458
+ imx-audio-xcvr cards.IMX-XCVR
++imx-cs42448 cards.CS42448
+ 
+ <confdir:ctl/default.conf>
+ <confdir:pcm/default.conf>

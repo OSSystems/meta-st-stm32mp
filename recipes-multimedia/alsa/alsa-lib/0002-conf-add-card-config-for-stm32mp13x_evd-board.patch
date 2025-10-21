@@ -1,14 +1,12 @@
-From a4ddabdfdf684f39f7cd3f4d7b29be5f12c8ed5d Mon Sep 17 00:00:00 2001
+From fdfd5ddd787dd69b64aca02cffe56f0ae80afa3d Mon Sep 17 00:00:00 2001
 From: Christophe Priouzeau <christophe.priouzeau@foss.st.com>
 Date: Fri, 7 Jan 2022 09:24:37 +0100
-Subject: [PATCH 2/2] conf: add card config for stm32mp13x_evd board
+Subject: [PATCH] conf: add card config for stm32mp13x_evd board
 
 Add card configuration file for STM32MP13x-EVD board.
 
 Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
 ---
-Upstream-Status: Pending [specific to ST boards]
-
  src/conf/cards/Makefile.am       |  3 +-
  src/conf/cards/STM32MP13EV1.conf | 65 ++++++++++++++++++++++++++++++++
  src/conf/cards/aliases.conf      |  1 +
@@ -16,7 +14,7 @@ Upstream-Status: Pending [specific to ST boards]
  create mode 100644 src/conf/cards/STM32MP13EV1.conf
 
 diff --git a/src/conf/cards/Makefile.am b/src/conf/cards/Makefile.am
-index c29d831..2ed47ad 100644
+index 2ab7fd0..d1b1636 100644
 --- a/src/conf/cards/Makefile.am
 +++ b/src/conf/cards/Makefile.am
 @@ -60,7 +60,8 @@ cfg_files = aliases.conf \
@@ -27,8 +25,8 @@ index c29d831..2ed47ad 100644
 +	STM32MP15DK.conf \
 +	STM32MP13EV1.conf
  
- if BUILD_ALISP
- cfg_files += aliases.alisp
+ alsa_DATA = $(cfg_files)
+ 
 diff --git a/src/conf/cards/STM32MP13EV1.conf b/src/conf/cards/STM32MP13EV1.conf
 new file mode 100644
 index 0000000..332bdbc
@@ -101,7 +99,7 @@ index 0000000..332bdbc
 +}
 +
 diff --git a/src/conf/cards/aliases.conf b/src/conf/cards/aliases.conf
-index b282549..d1897c9 100644
+index 2985cef..ce9f304 100644
 --- a/src/conf/cards/aliases.conf
 +++ b/src/conf/cards/aliases.conf
 @@ -59,6 +59,7 @@ pistachio cards.pistachio-card
@@ -112,6 +110,3 @@ index b282549..d1897c9 100644
  
  <confdir:ctl/default.conf>
  <confdir:pcm/default.conf>
--- 
-2.25.1
-
