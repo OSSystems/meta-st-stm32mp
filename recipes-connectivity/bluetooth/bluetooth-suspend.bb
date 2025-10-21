@@ -9,8 +9,7 @@ SRC_URI = " \
     file://bluetooth-brcmfmac-sleep.service \
     "
 
-S = "${WORKDIR}/sources"
-UNPACKDIR = "${S}"
+S = "${UNPACKDIR}/sources"
 
 inherit systemd
 SYSTEMD_PACKAGES += "${PN}"
